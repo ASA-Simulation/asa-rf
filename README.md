@@ -26,4 +26,4 @@ We also recommend that you use VSCode, for which we have prepared some integrati
 
 ## Acknowledgments
 
-This exercise was developed by Diego Geraldo and [Adrisson Samersla](https://github.com/adrissonsamersla).
+This material was developed by [Diego Geraldo](https://github.com/dgo50) and [Adrisson Samersla](https://github.com/adrissonsamersla).

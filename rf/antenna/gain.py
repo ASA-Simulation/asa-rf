@@ -11,6 +11,6 @@ def get_scale(
     :return: valor do fator de escala adimensional
     """
 
-    # d/dx [sin(x)/x] = 0 => x = tan(x) => x != 0, x ~= 4.49340945790906
-    # x = k * theta => k = 4.49340945790906 / theta
-    return 4.49340945790906 / radians(beam_width / 2.0)
+    # sin(x) / x = 0.5 (~= -3dB) => x ~= 1.89549
+    # x = k * theta => k = 1.89275 / theta
+    return 1.89549 / radians(beam_width / 2.0)

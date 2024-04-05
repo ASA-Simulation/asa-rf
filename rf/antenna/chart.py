@@ -24,7 +24,7 @@ def plot_azimuth_gains(
     :return: tupla com as duas figuras plotadas
     """
 
-    angles = np.arange(-PI/24.0, PI/24.0, 0.001*PI/180.0, dtype=np.float64)
+    angles = np.arange(-PI / 24.0, PI / 24.0, 0.001 * PI / 180.0, dtype=np.float64)
 
     scale = get_scale(beam_width)
     gains = np.abs(np.sin(scale * angles) / (scale * angles))
@@ -32,7 +32,9 @@ def plot_azimuth_gains(
     np.nan_to_num(gains, copy=False, nan=0.0, posinf=np.inf, neginf=-np.inf)
 
     y = max_range * np.sqrt(gains) * np.cos(angles)
-    x = max_range * np.sqrt(gains) * np.sin(angles) * NAUTIC_MILES_TO_METERS / 1_000.0 # nm to km
+    x = (
+        max_range * np.sqrt(gains) * np.sin(angles) * NAUTIC_MILES_TO_METERS / 1_000.0
+    )  # nm to km
 
     figure1 = new_chart()
     axes = figure1.subplots()
@@ -81,7 +83,9 @@ def plot_elevation_gains(
 
     # Primeiro caso: da elevação mínima até o ângulo do alvo esperado
 
-    angles_1st = np.arange(radians(min_elev), radians(tgt_ang), radians(0.001), dtype=np.float64) - radians(tgt_ang)
+    angles_1st = np.arange(
+        radians(min_elev), radians(tgt_ang), radians(0.001), dtype=np.float64
+    ) - radians(tgt_ang)
     gains_1st = np.sin(factor * angles_1st) / (factor * angles_1st)
 
     np.nan_to_num(gains_1st, copy=False, nan=1.0, posinf=np.inf, neginf=-np.inf)
@@ -91,8 +95,12 @@ def plot_elevation_gains(
 
     # Segundo caso: do ângulo do alvo esperado até a elevação máxima
 
-    angles_2nd = np.arange(radians(tgt_ang), radians(max_elev), radians(0.001), dtype=np.float64)
-    gains_2nd = np.power(np.sin(angles_2nd), -2.0) / np.power(np.sin(radians(tgt_ang)), -2.0)
+    angles_2nd = np.arange(
+        radians(tgt_ang), radians(max_elev), radians(0.001), dtype=np.float64
+    )
+    gains_2nd = np.power(np.sin(angles_2nd), -2.0) / np.power(
+        np.sin(radians(tgt_ang)), -2.0
+    )
 
     np.nan_to_num(gains_2nd, copy=False, nan=0.0, posinf=np.inf, neginf=-np.inf)
 
@@ -110,10 +118,10 @@ def plot_elevation_gains(
     axes.plot(xs, ys, linewidth=2)
     plt.title("Antenna range profile in elevation")
     plt.xlabel("$x$ ($km$)")
-    plt.ylabel("$y$ ($km$)")
+    plt.ylabel("$y$ ($feet$)")
     plt.tight_layout()
 
-    xs = np.radians(np.concatenate([angles_1st, angles_2nd]))
+    xs = np.concatenate([angles_1st, angles_2nd])
     ys = np.concatenate([gains_1st, gains_2nd])
 
     figure2 = new_chart()

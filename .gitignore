@@ -1,0 +1,13 @@
+# virtual environment
+.venv
+
+# pytest cache
+.pytest_cache
+
+# python cache
+.eggs
+*.egg-info
+__pycache__
+
+# data
+data/*

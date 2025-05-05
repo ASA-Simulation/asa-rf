@@ -25,7 +25,9 @@ class Radar:
     pulse_width: float
     pulse_repetition: float
     beam_width: float
-    angular_velocity: float  # circular => ômega; cônica => número de revoluções por segundo
+    angular_velocity: (
+        float  # circular => ômega; cônica => número de revoluções por segundo
+    )
 
 
 @dataclass

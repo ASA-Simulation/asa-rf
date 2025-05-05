@@ -121,7 +121,7 @@ def plot_elevation_gains(
     plt.ylabel("$y$ ($feet$)")
     plt.tight_layout()
 
-    xs = np.concatenate([angles_1st, angles_2nd])
+    xs = np.concatenate([angles_1st, angles_2nd]) * 180.0 / PI
     ys = np.concatenate([gains_1st, gains_2nd])
 
     figure2 = new_chart()
